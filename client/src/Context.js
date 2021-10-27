@@ -52,7 +52,25 @@ const ContextProvider = ({ children }) => {
     connectionRef.current = peer;
   };
 
+  const callUser = (id) => {
+    const peer = new Peer({ initiator: true, trickle: false, stream });
 
+    peer.on('signal', (data) => {
+      socket.emit('callUser', { userToCall: id, signalData: data, from: me, name });
+    });
+
+    peer.on('stream', (currentStream) => {
+      userVideo.current.srcObject = currentStream;
+    });
+
+    socket.on('callAccepted', (signal) => {
+      setCallAccepted(true);
+
+      peer.signal(signal);
+    });
+
+    connectionRef.current = peer;
+  };
 
   const leaveCall = () => {
     setCallEnded(true);
