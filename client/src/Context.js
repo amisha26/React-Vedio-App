@@ -34,7 +34,25 @@ const ContextProvider = ({ children }) => {
     });
   }, []);
 
-  
+  const answerCall = () => {
+    setCallAccepted(true);
+
+    const peer = new Peer({ initiator: false, trickle: false, stream });
+
+    peer.on('signal', (data) => {
+      socket.emit('answerCall', { signal: data, to: call.from });
+    });
+
+    peer.on('stream', (currentStream) => {
+      userVideo.current.srcObject = currentStream;
+    });
+
+    peer.signal(call.signal);
+
+    connectionRef.current = peer;
+  };
+
+
 
   const leaveCall = () => {
     setCallEnded(true);
