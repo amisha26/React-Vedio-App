@@ -11,5 +11,5 @@ Setup:
 
 ### Deployment
 
-* Heroku Back-End
-* Netlify Front-End
+* Heroku For Back-End
+* Netlify For Front-End
