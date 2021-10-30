@@ -1,4 +1,6 @@
-### Realtime Chat Application
+## Realtime Chat Application
+
+![Vedio](https://github.com/amisha26/React-Vedio-App/blob/master/client/public/vedio.jpg)
 
 ### Introduction
 This is a code repository for the corresponding video tutorial. 
